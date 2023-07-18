@@ -18,7 +18,5 @@ name: Rust
       - uses: actions/checkout@v3
       - name: Minimalistic build
         run: cargo build --release --verbose
-      - uses: actions/upload-artifact@v3.1.2
-        with:
-          path: target/release/midnight
+
       
