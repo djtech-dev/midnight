@@ -30,11 +30,11 @@ impl Panel {
     }
 
     pub fn update_dimension(&mut self) {
-        
+
     }
 
-    pub fn set_height(&mut self, heigth: f32) {
-        self.heigth = heigth;
+    pub fn set_height(&mut self, height: f32) {
+        self.height = height;
         self.update_dimension();
     }
     pub fn set_width(&mut self, width: f32) {
