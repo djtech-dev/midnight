@@ -35,3 +35,13 @@ pub fn save_editor(i: &mut Interface) {
 		i.popup_text(String::new("Impossible to save this Panel's content beacuse it's not based on Helium v1."));
 	}
 }
+
+// Yes, Prompt is implemented inside the `helium.rs` source file
+// This is beacuse Prompt itself uses Helium.
+impl Interface {
+	pub fn _prompt(&mut self, text: String) -> String {
+		let original_bottom = self.bottom_panel;
+
+		
+	}
+}

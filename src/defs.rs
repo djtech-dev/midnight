@@ -1,14 +1,14 @@
+use ratatui::layout::Layout;
 use std::collections::HashMap;
-use ratatui::widgets::Widget;
 
 pub struct Panel {
-    widget: Box<dyn Widget>,
+    //content: Box<dyn Widget>,
+    content: Layout,    
 
     height: f32, // Percentual of terminal's height
-    width: f32,  // Percentual of terminal's widht 
+    width: f32,  // Percentual of terminal's widht
 }
 
-//pub struct Interface<F: FnOnce() -> String> {
 pub struct Interface {
     // Tiling Panel Managment
     top_panel: Option<Panel>,
@@ -17,10 +17,31 @@ pub struct Interface {
 
     // Equivalent to Emacs's commands.
     // Use `M+x` in order to launch the Command Prompt
-    
     commands: HashMap<String, Box<dyn FnMut(&mut Interface) -> ()>>,
 }
 
+impl Panel {
+    pub fn new(content: Layout, height: f32, width: f32) -> Panel {
+        Panel {
+            content: content,
+            height: height,
+            width: width,
+        }
+    }
+
+    pub fn update_dimension(&mut self) {
+        
+    }
+
+    pub fn set_height(&mut self, heigth: f32) {
+        self.heigth = heigth;
+        self.update_dimension();
+    }
+    pub fn set_width(&mut self, width: f32) {
+        self.width = width;
+        self.update_dimension();
+    }
+}
 impl Interface {
     pub fn new() -> Interface {
         Interface {
@@ -35,5 +56,5 @@ impl Interface {
         // 1. Render Top Panel
         // 2. Render All Center Panels
         // 3. Render Bottom Panel
-    }   
+    }
 }
