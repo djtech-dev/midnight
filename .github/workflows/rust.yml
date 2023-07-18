@@ -40,7 +40,7 @@ jobs:
           args: --release --all-features
       - uses: actions/upload-artifact@v3
         with:
-          name: amd64_linux_midnight
+          name: amd64_macos_midnight
           path: target/release/midnight
   build_win64:
     name: Midnight [Windows]
@@ -59,6 +59,6 @@ jobs:
           args: --release --all-features
       - uses: actions/upload-artifact@v3
         with:
-          name: amd64_linux_midnight
+          name: amd64_win64_midnight
           path: target/release/midnight
     
