@@ -4,9 +4,47 @@ on: [push]
 name: Building on Ubuntu
 
 jobs:
-  build_and_test:
-    name: Midnight
+  build_linux:
+    name: Midnight [Linux]
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: git submodule init
+      - run: git submodule sync
+      - run: git submodule update
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+      - uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --release --all-features
+      - uses: actions/upload-artifact@v3
+        with:
+          name: amd64_linux_midnight
+          path: target/release/midnight
+  build_macos:
+    name: Midnight [MacOS]
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: git submodule init
+      - run: git submodule sync
+      - run: git submodule update
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+      - uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --release --all-features
+      - uses: actions/upload-artifact@v3
+        with:
+          name: amd64_linux_midnight
+          path: target/release/midnight
+  build_win64:
+    name: Midnight [Windows]
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
       - run: git submodule init
